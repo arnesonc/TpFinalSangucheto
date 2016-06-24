@@ -15,5 +15,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/spring-web-3.2.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/spring-webmvc-3.2.2.RELEASE.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="/home/ger/Documentos/Taller1/TpFinalSangucheto/Sangucheto/src/main/webapp/WEB-INF/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="src/main/webapp/WEB-INF/classes"/>
 </classpath>
