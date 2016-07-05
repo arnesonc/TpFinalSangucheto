@@ -18,10 +18,10 @@
 			<a class="navbar-brand" href="/sangucheto">Sanguchetto</a>
 		</div>
 		<ul class="nav navbar-nav">
-			<li><a href="/sangucheto/sanguchetto/armarSanguchetto">Armar
+			<li class="active"><a href="/sangucheto/sanguchetto/armarSanguchetto">Armar
 					Sanguchetto</a></li>
 			<li><a href="/sangucheto/stock/verStockIngredientes">Ver stock</a></li>
-			<li class="active"><a
+			<li><a
 				href="/sangucheto/ingredientes/nuevoIngrediente">Agregar
 					ingrediente</a></li>
 		</ul>
@@ -30,6 +30,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
+			<legend>Armar Sanguchetto</legend>
 				<div class="col-md-4"></div>
 
 				<div class="col-md-4">

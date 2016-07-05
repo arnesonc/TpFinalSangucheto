@@ -1,6 +1,7 @@
 package tallerweb.sangucheto.modelo;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -118,5 +119,27 @@ public class Stock {
 		}
 		this.stock.remove(ingrediente);
 		return true;
+	}
+	
+	/**
+	 * Obtiene un ingrediente por su nombre
+	 * @param nombre
+	 * @return el ingrediente en caso de encontrarlo o null en caso contrario
+	 * */
+	public Ingrediente obtenerIngredientePorNombre(String nombre){
+		
+		Set<Ingrediente> ingredientes = this.listarIngredientesDisponibles();
+		Ingrediente ingrediente = null;
+			
+		for (Iterator<Ingrediente> it = ingredientes.iterator(); it.hasNext(); ) {
+	        Ingrediente i = it.next();
+	        
+	        if (i.getNombre().equalsIgnoreCase(nombre)){
+	        	ingrediente = i;
+	        	break;
+	        }
+	    }
+		
+		return ingrediente;
 	}
 }

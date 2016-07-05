@@ -8,12 +8,22 @@
 
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/sanguchetto.css" rel="stylesheet">
 </head>
 <body>
-	<div class="container" role="main">
-		
-		
-	</div>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/sangucheto">Sanguchetto</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="/sangucheto/sanguchetto/armarSanguchetto">Armar Sanguchetto</a></li>
+				<li><a href="/sangucheto/stock/verStockIngredientes">Ver stock</a></li>
+				<li><a href="/sangucheto/ingredientes/nuevoIngrediente">Agregar ingrediente</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container" role="main"></div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="js/jquery-1.11.3.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->

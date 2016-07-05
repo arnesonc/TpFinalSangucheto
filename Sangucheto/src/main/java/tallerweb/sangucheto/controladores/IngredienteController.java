@@ -39,11 +39,21 @@ public class IngredienteController {
 		ingrediente.setPrecio(new Double(precio));
 		ingrediente.setTipo(tipo.equals(TipoIngrediente.INGREDIENTE.name()) ? TipoIngrediente.INGREDIENTE
 				: TipoIngrediente.CONDIMENTO);
+		
+		String mensaje = "";
+		
+		boolean existe = stock.existeIngrediente(ingrediente); 
+		
+		if(!existe){
+			boolean agregado = stock.agregarIngrediente(ingrediente);
 
-		boolean agregado = stock.agregarIngrediente(ingrediente);
+			mensaje = agregado ? "El ingrediente se agregó correctamente." : "No se pudo agregar el ingrediente";
 
-		String mensaje = agregado ? "El ingrediente se agregó correctamente." : "No se pudo agregar el ingrediente";
-
+			
+		}else{
+			mensaje = "El ingrediente ya existe. Por favor ingrese uno distinto.";
+		}
+		
 		ModelMap modelMap = new ModelMap();
 		modelMap.put("mensaje", mensaje);
 
