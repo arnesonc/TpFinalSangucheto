@@ -36,7 +36,7 @@ public class SanguchettoTest {
 	public void testVaciar() throws Exception {
 		Double precioFinalEsperado = 0d;
 		sanguchetto.vaciar();
-		Assert.assertEquals("El precio final obtenido no es el esperado.", precioFinalEsperado, sanguchetto.getPrecio());
+		Assert.assertEquals("El precio final obtenido no es el esperado.", precioFinalEsperado, sanguchetto.obtenerPrecio());
 	}
 
 	@Test
@@ -44,7 +44,7 @@ public class SanguchettoTest {
 		sanguchetto.vaciar();
 		Double precioFinalEsperado = 2d;
 		sanguchetto.agregarIngrediente(construirIngrediente("Jamon", TipoIngrediente.INGREDIENTE, 2d));
-		Double precioFinalObtenido = sanguchetto.getPrecio();
+		Double precioFinalObtenido = sanguchetto.obtenerPrecio();
 		Assert.assertEquals("El precio final esperado, no coincide con el obtenido", precioFinalEsperado, precioFinalObtenido);
 	}
 
@@ -94,7 +94,7 @@ public class SanguchettoTest {
 		sanguchetto.agregarIngrediente(construirIngrediente("Queso", TipoIngrediente.INGREDIENTE, 2d));
 		sanguchetto.agregarIngrediente(construirIngrediente("Tomate", TipoIngrediente.INGREDIENTE, 2d));
 		sanguchetto.agregarIngrediente(construirIngrediente("Lechuga", TipoIngrediente.INGREDIENTE, 1.5d));
-		Double precioFinalObtenido = sanguchetto.getPrecio();
+		Double precioFinalObtenido = sanguchetto.obtenerPrecio();
 		Assert.assertEquals("El precio final esperado, no coincide con el obtenido", precioFinalEsperado, precioFinalObtenido);
 	}
 }

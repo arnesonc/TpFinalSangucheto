@@ -21,14 +21,7 @@ public class Sanguchetto {
 	 * @throws Exception
 	 */
 	public void vaciar() throws Exception {
-
-		if (!ingredientes.isEmpty()) {
-			boolean removidos = ingredientes.removeAll(ingredientes);
-
-			if (!removidos) {
-				throw new Exception("No se pudo varia la lista de ingredientes.");
-			}
-		}
+		ingredientes.clear();
 	}
 
 	/**
@@ -88,7 +81,7 @@ public class Sanguchetto {
 	 * 
 	 * @return
 	 */
-	public Double getPrecio() {
+	public Double obtenerPrecio() {
 		Double precioTotal = 0d;
 
 		for (Ingrediente ingrediente : ingredientes) {

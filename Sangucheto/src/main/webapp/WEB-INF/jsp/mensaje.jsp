@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/sanguchetto.css" rel="stylesheet">
 <title>Sanguchetto</title>
 </head>
 <body>
@@ -20,7 +21,8 @@
 		<ul class="nav navbar-nav">
 			<li><a href="/sangucheto/sanguchetto/armarSanguchetto">Armar
 					Sanguchetto</a></li>
-			<li><a href="/sangucheto/stock/verStockIngredientes">Ver stock</a></li>
+			<li><a href="/sangucheto/stock/verStockIngredientes">Ver
+					stock</a></li>
 			<li class="active"><a
 				href="/sangucheto/ingredientes/nuevoIngrediente">Agregar
 					ingrediente</a></li>
@@ -31,9 +33,22 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<c:if test="${!empty mostrarVolver && mostrarVolver == true}">
+						<input id="btnMensajeVolver" type="button" class="btn btn-default"
+							value="Volver" />
+					</c:if>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-4"></div>
 
 				<div class="col-md-4">
-					<div class="alert alert-info">
+					<div class="alert alert-info marginTop">
 						<strong>${mensaje}</strong>
 					</div>
 				</div>
@@ -41,5 +56,7 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../js/sanguchetto.js"></script>
 </body>
 </html>

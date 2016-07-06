@@ -9,8 +9,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/sanguchetto.css" rel="stylesheet">
 <title>Sanguchetto - Nuevo ingrediente</title>
-<link href="css/sanguchetto.css" rel="stylesheet">
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -70,7 +70,6 @@
 						</div>
 						<div class="col-md-4"></div>
 					</div>
-
 				</form:form>
 			</div>
 		</div>

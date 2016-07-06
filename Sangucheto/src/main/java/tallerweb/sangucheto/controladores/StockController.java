@@ -61,15 +61,15 @@ public class StockController {
 		return new ModelAndView("mensaje", modelMap);
 	}
 
-	@RequestMapping(value = "/eliminarIngrediente", method = RequestMethod.POST)
+	@RequestMapping(value = "/eliminarStockIngrediente", method = RequestMethod.POST)
 	public ModelAndView eliminarIngrediente(@RequestParam("nombre") String nombre) {
 
 		Ingrediente ingrediente = stock.obtenerIngredientePorNombre(nombre);
 
-		boolean eliminado = stock.eliminarIngrediente(ingrediente);
-
-		String mensaje = eliminado ? "El ingrediente fue eliminado correctamente."
-				: "No se pudo eliminar el ingrediente.";
+		boolean eliminado = stock.eliminaStockIngrediente(ingrediente);
+		
+		String mensaje = eliminado ? "El stock del ingrediente fue eliminado correctamente."
+				: "No se pudo eliminar el stock del ingrediente.";
 
 		ModelMap modelMap = new ModelMap();
 		modelMap.put("mensaje", mensaje);

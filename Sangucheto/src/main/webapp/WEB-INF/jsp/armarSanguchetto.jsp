@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/sanguchetto.css" rel="stylesheet">
 <title>Sanguchetto</title>
 </head>
 <body>
@@ -18,11 +19,12 @@
 			<a class="navbar-brand" href="/sangucheto">Sanguchetto</a>
 		</div>
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="/sangucheto/sanguchetto/armarSanguchetto">Armar
+			<li class="active"><a
+				href="/sangucheto/sanguchetto/armarSanguchetto">Armar
 					Sanguchetto</a></li>
-			<li><a href="/sangucheto/stock/verStockIngredientes">Ver stock</a></li>
-			<li><a
-				href="/sangucheto/ingredientes/nuevoIngrediente">Agregar
+			<li><a href="/sangucheto/stock/verStockIngredientes">Ver
+					stock</a></li>
+			<li><a href="/sangucheto/ingredientes/nuevoIngrediente">Agregar
 					ingrediente</a></li>
 		</ul>
 	</div>
@@ -30,15 +32,111 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-			<legend>Armar Sanguchetto</legend>
-				<div class="col-md-4"></div>
+				<legend>Armar Sanguchetto</legend>
 
-				<div class="col-md-4">
-					<div class="alert alert-info">
-						<strong>${mensaje}</strong>
+				<div class="col-md-6">
+					<h4>Ingredientes del Sanguchetto</h4>
+					<div>
+						<form action="/sangucheto/sanguchetto/nuevoIngredienteSanguchetto"
+							method="POST">
+							<input type="hidden" name="tipo" value="ingrediente"> <input
+								class="btn btn-primary" type="submit"
+								name="btnAgregarIngrediente" value="Agregar ingrediente" />
+						</form>
 					</div>
+					<c:choose>
+						<c:when test="${empty ingredientesAgregados}">
+							<div class="alert alert-info marginTop">
+								<strong>Aún hay ingredientes de tipo ingrediente
+									agregados a su Sanguchetto.</strong>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<table class="table table-striped table-bordered marginTop">
+								<thead>
+									<tr>
+										<th>Nombre</th>
+										<th>Tipo de ingrediente</th>
+										<th>Precio</th>
+										<th>Unidades</th>
+										<th>Precio final</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${ingredientesAgregados}"
+										var="stockIngrediente">
+										<tr>
+											<td>${stockIngrediente.key.nombre}</td>
+											<td>${stockIngrediente.key.tipo}</td>
+											<td>AR$ ${stockIngrediente.key.precio}</td>
+											<td>${stockIngrediente.value}</td>
+											<td>AR$ ${stockIngrediente.value * stockIngrediente.key.precio}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</c:otherwise>
+					</c:choose>
 				</div>
-				<div class="col-md-4"></div>
+				<div class="col-md-6">
+					<h4>Condimentos del Sanguchetto</h4>
+					<div>
+						<form action="/sangucheto/sanguchetto/nuevoIngredienteSanguchetto"
+							method="POST">
+							<input type="hidden" name="tipo" value="condimento"> <input
+								class="btn btn-primary" type="submit"
+								name="btnAgregarIngrediente" value="Agregar condimento" />
+						</form>
+					</div>
+					<c:choose>
+						<c:when test="${empty condimentosAgregados}">
+							<div class="alert alert-info marginTop">
+								<strong>Aún hay ingredientes de tipo condimento
+									agregados a su Sanguchetto.</strong>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<table class="table table-striped table-bordered marginTop">
+								<thead>
+									<tr>
+										<th>Nombre</th>
+										<th>Tipo de ingrediente</th>
+										<th>AR$ Precio</th>
+										<th>Unidades</th>
+										<th>Precio final</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${condimentosAgregados}"
+										var="stockIngrediente">
+										<tr>
+											<td>${stockIngrediente.key.nombre}</td>
+											<td>${stockIngrediente.key.tipo}</td>
+											<td>${stockIngrediente.key.precio}</td>
+											<td>${stockIngrediente.value}</td>
+											<td>AR$ ${stockIngrediente.value * stockIngrediente.key.precio}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
+		</div>
+		<div class="row marginTop">
+			<div class="col-md-12 text-right marginTop">
+				<div class="col-md-10"></div>
+				<div class="col-md-2 total">Total: AR$ ${total}</div>
+			</div>
+		</div>
+		<div class="row marginTop">
+			<div class="col-md-12 text-right">
+				<div class="col-md-9"></div>
+				<div class="col-md-3">
+					<a href="#" class="btn btn-success">Comprar</a>
+					<a href="/sangucheto/sanguchetto/cancelarSanguchetto" class="btn btn-default marginLeft">Cancelar</a>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="../css/bootstrap.min.css" rel="stylesheet">
-<title>Sanguchetto</title>
+<title>Sanguchetto - Ingredientes disponibles</title>
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -18,9 +18,9 @@
 			<a class="navbar-brand" href="/sangucheto">Sanguchetto</a>
 		</div>
 		<ul class="nav navbar-nav">
-			<li><a href="/sangucheto/sanguchetto/armarSanguchetto">Armar
+			<li class="active"><a href="/sangucheto/sanguchetto/armarSanguchetto">Armar
 					Sanguchetto</a></li>
-			<li class="active"><a
+			<li><a
 				href="/sangucheto/stock/verStockIngredientes">Ver stock</a></li>
 			<li><a href="/sangucheto/ingredientes/nuevoIngrediente">Agregar
 					ingrediente</a></li>
@@ -30,15 +30,16 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<legend>Ver stock ingredientes</legend>
-				<div class="col-md-2"></div>
-				
-				<div class="col-md-8">
+				<legend>Seleccionar ${tipoIngrediente.name().toLowerCase()}s para agregar a su
+					Sanguchetto</legend>
+				<div class="col-md-3"></div>
+
+				<div class="col-md-6">
 					<c:choose>
-						<c:when test="${empty listaStockIngredientes}">
+						<c:when test="${empty ingredientesDisponibles}">
 							<div class="alert alert-info">
-								<strong>No hay ingredientes agregados para mostrar su
-									stock disponible.</strong>
+								<strong>No hay ${tipoIngrediente.name().toLowerCase()}s disponibles para agregar a
+									su Sanguchetto.</strong>
 							</div>
 						</c:when>
 						<c:otherwise>
@@ -48,33 +49,22 @@
 										<th>Nombre</th>
 										<th>Tipo de ingrediente</th>
 										<th>Precio</th>
-										<th>Stock</th>
-										<th>Agregar stock</th>
-										<th>Eliminar stock</th>
+										<th>Agregar</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${listaStockIngredientes}"
-										var="stockIngrediente">
+									<c:forEach items="${ingredientesDisponibles}" var="ingrediente">
 										<tr>
-											<td>${stockIngrediente.key.nombre}</td>
-											<td>${stockIngrediente.key.tipo}</td>
-											<td>AR$ ${stockIngrediente.key.precio}</td>
-											<td>${stockIngrediente.value}</td>
+											<td>${ingrediente.key.nombre}</td>
+											<td>${ingrediente.key.tipo}</td>
+											<td>AR$ ${ingrediente.key.precio}</td>
 											<td><form
-													action="/sangucheto/stock/agregarStockIngrediente"
+													action="/sangucheto/sanguchetto/agregarCantidadIngrediente"
 													method="POST">
 													<input type="hidden" name="nombre"
-														value="${stockIngrediente.key.nombre}"> <input
+														value="${ingrediente.key.nombre}"> <input
 														class="btn btn-primary" type="submit"
-														name="btnAgregarStock" value="Agregar stock" />
-												</form></td>
-											<td><form action="/sangucheto/stock/eliminarStockIngrediente"
-													method="POST">
-													<input type="hidden" name="nombre"
-														value="${stockIngrediente.key.nombre}"> <input
-														class="btn btn-danger" type="submit"
-														name="btnEliminarStockIngrediente" value="Eliminar stock" />
+														name="btnAgregarCantidadIngrediente" value="Agregar" />
 												</form></td>
 										</tr>
 									</c:forEach>
@@ -83,7 +73,7 @@
 						</c:otherwise>
 					</c:choose>
 				</div>
-				<div class="col-md-2"></div>
+				<div class="col-md-3"></div>
 			</div>
 		</div>
 	</div>
