@@ -36,7 +36,7 @@ public class StockController {
 	public ModelAndView agregarStockIngrediente(@RequestParam("nombre") String nombre) {
 
 		Ingrediente ingrediente = stock.obtenerIngredientePorNombre(nombre);
-		
+
 		ModelMap modelMap = new ModelMap();
 		modelMap.put("ingrediente", ingrediente);
 		modelMap.put("stock", 0);
@@ -50,31 +50,15 @@ public class StockController {
 
 		Ingrediente ingrediente = stock.obtenerIngredientePorNombre(nombre);
 
-		boolean agregado = stock.agregarStock(ingrediente, new Integer(cantidad));
+		stock.agregarStock(ingrediente, new Integer(cantidad));
 
-		String mensaje = agregado ? "El stock se agregó correctamente al ingrediente."
-				: "No se pudo agregar el stock al ingrediente";
-
-		ModelMap modelMap = new ModelMap();
-		modelMap.put("mensaje", mensaje);
-
-		return new ModelAndView("mensaje", modelMap);
+		return new ModelAndView("redirect:/stock/verStockIngredientes");
 	}
 
 	@RequestMapping(value = "/eliminarStockIngrediente", method = RequestMethod.POST)
 	public ModelAndView eliminarIngrediente(@RequestParam("nombre") String nombre) {
-
 		Ingrediente ingrediente = stock.obtenerIngredientePorNombre(nombre);
-
-		boolean eliminado = stock.eliminaStockIngrediente(ingrediente);
-		
-		String mensaje = eliminado ? "El stock del ingrediente fue eliminado correctamente."
-				: "No se pudo eliminar el stock del ingrediente.";
-
-		ModelMap modelMap = new ModelMap();
-		modelMap.put("mensaje", mensaje);
-
-		return new ModelAndView("mensaje", modelMap);
+		stock.eliminaStockIngrediente(ingrediente);
+		return new ModelAndView("redirect:/stock/verStockIngredientes");
 	}
-
 }

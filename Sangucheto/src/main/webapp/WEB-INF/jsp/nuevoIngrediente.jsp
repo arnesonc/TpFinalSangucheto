@@ -37,7 +37,7 @@
 						<form:label class="col-md-4 control-label" path="nombre">Nombre</form:label>
 						<div class="col-md-4">
 							<form:input path="nombre" placeholder="Nombre"
-								class="form-control input-md" />
+								class="form-control input-md" required="required" />
 						</div>
 						<div class="col-md-4"></div>
 					</div>
@@ -46,7 +46,7 @@
 						<form:label class="col-md-4 control-label" path="precio">Precio</form:label>
 						<div class="col-md-4">
 							<form:input path="precio" placeholder="Precio"
-								class="form-control input-md" />
+								class="form-control input-md mascara-decimal" required="required"  />
 						</div>
 						<div class="col-md-4"></div>
 					</div>
@@ -74,5 +74,8 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.maskMoney.js"></script>
+	<script type="text/javascript" src="../js/sanguchetto.js"></script>
 </body>
 </html>

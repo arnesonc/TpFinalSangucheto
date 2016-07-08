@@ -40,23 +40,19 @@ public class IngredienteController {
 		ingrediente.setTipo(tipo.equals(TipoIngrediente.INGREDIENTE.name()) ? TipoIngrediente.INGREDIENTE
 				: TipoIngrediente.CONDIMENTO);
 		
-		String mensaje = "";
-		
 		boolean existe = stock.existeIngrediente(ingrediente); 
 		
 		if(!existe){
-			boolean agregado = stock.agregarIngrediente(ingrediente);
-
-			mensaje = agregado ? "El ingrediente se agregó correctamente." : "No se pudo agregar el ingrediente";
-
-			
+			//boolean agregado = stock.agregarIngrediente(ingrediente);
+			//mensaje = agregado ? "El ingrediente se agregó correctamente." : "No se pudo agregar el ingrediente";
+			stock.agregarIngrediente(ingrediente);
+			return new ModelAndView("redirect:/stock/verStockIngredientes");
 		}else{
-			mensaje = "El ingrediente ya existe. Por favor ingrese uno distinto.";
-		}
-		
-		ModelMap modelMap = new ModelMap();
-		modelMap.put("mensaje", mensaje);
+			String mensaje = "El ingrediente ya existe. Por favor ingrese uno distinto.";
+			ModelMap modelMap = new ModelMap();
+			modelMap.put("mensaje", mensaje);
 
-		return new ModelAndView("mensaje", modelMap);
+			return new ModelAndView("mensaje", modelMap);
+		}
 	}
 }

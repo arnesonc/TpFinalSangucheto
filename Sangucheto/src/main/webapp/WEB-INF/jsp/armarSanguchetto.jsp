@@ -126,15 +126,15 @@
 		</div>
 		<div class="row marginTop">
 			<div class="col-md-12 text-right marginTop">
-				<div class="col-md-10"></div>
-				<div class="col-md-2 total">Total: AR$ ${total}</div>
+				<div class="col-md-9"></div>
+				<div class="col-md-3 total"><h3>Total: AR$ ${total}</h3></div>
 			</div>
 		</div>
 		<div class="row marginTop">
 			<div class="col-md-12 text-right">
 				<div class="col-md-9"></div>
 				<div class="col-md-3">
-					<a href="#" class="btn btn-success">Comprar</a>
+					<a href="/sangucheto/sanguchetto/comprarSanguchetto" class="btn btn-success">Comprar</a>
 					<a href="/sangucheto/sanguchetto/cancelarSanguchetto" class="btn btn-default marginLeft">Cancelar</a>
 				</div>
 			</div>

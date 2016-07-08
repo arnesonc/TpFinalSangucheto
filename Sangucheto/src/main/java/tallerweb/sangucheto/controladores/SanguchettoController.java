@@ -1,7 +1,6 @@
 package tallerweb.sangucheto.controladores;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -39,22 +38,8 @@ public class SanguchettoController {
 	public ModelAndView armarSanguchetto() {
 		ModelMap modelMap = new ModelMap();
 		modelMap.put("ingredientesAgregados", this.ingredientesAgregados);
-		modelMap.put("condimentosAgregados", this.condimentosAgregados);
-		
-		
-		Double total = 0d;
-		
-		for (Map.Entry<Ingrediente, Integer> entry : ingredientesAgregados.entrySet()) {
-
-			total += entry.getKey().getPrecio() * entry.getValue();
-		}
-		
-		for (Map.Entry<Ingrediente, Integer> entry : condimentosAgregados.entrySet()) {
-
-			total += entry.getKey().getPrecio() * entry.getValue();
-		}
-		
-		modelMap.put("total", total);
+		modelMap.put("condimentosAgregados", this.condimentosAgregados);		
+		modelMap.put("total", String.format( "%.2f", sanguchetto.obtenerPrecio()));
 		return new ModelAndView("armarSanguchetto", modelMap);
 	}
 
@@ -89,20 +74,21 @@ public class SanguchettoController {
 
 		Ingrediente ingrediente = stock.obtenerIngredientePorNombre(nombre);
 		Integer stockIngrediente = stock.obtenerStockDisponible(ingrediente);
-		String mensaje = "";
 		ModelMap modelMap = new ModelMap();
 		Integer cantidadIngrediente = new Integer(cantidad);
 		Integer nuevaCantidad = 0;
+		Integer contador = 0;
 		TipoIngrediente tipoIngrediente = tipo.equalsIgnoreCase(TipoIngrediente.INGREDIENTE.name())
 				? TipoIngrediente.INGREDIENTE : TipoIngrediente.CONDIMENTO;
 
 		if (cantidadIngrediente > stockIngrediente) {
-			mensaje = "No hay stock suficiente del " + ingrediente.getTipo().name().toLowerCase() + "'"
+			String mensaje = "No hay stock suficiente del " + ingrediente.getTipo().name().toLowerCase() + "'"
 					+ ingrediente.getNombre() + "' para agregar al Sanguchetto. El stock disponible es de: "
 					+ stockIngrediente.toString()
 					+ " unidades. Por favor indique una cantidad acorde al stock disponible del ingrediente.";
 			modelMap.put("mensaje", mensaje);
 			modelMap.put("mostrarVolver", true);
+			return new ModelAndView("mensaje", modelMap);
 		} else {
 
 			if (tipoIngrediente == TipoIngrediente.INGREDIENTE) {
@@ -112,6 +98,12 @@ public class SanguchettoController {
 				} else {
 					this.ingredientesAgregados.put(ingrediente, cantidadIngrediente);
 				}
+				
+				contador = 0;
+				while(contador < cantidadIngrediente){
+					sanguchetto.agregarIngrediente(ingrediente);
+					contador ++;
+				}
 			} else {
 				if (this.condimentosAgregados.containsKey(ingrediente)) {
 					nuevaCantidad = this.condimentosAgregados.get(ingrediente) + cantidadIngrediente;
@@ -119,21 +111,19 @@ public class SanguchettoController {
 				} else {
 					this.condimentosAgregados.put(ingrediente, cantidadIngrediente);
 				}
+				
+				contador = 0;
+				while(contador < cantidadIngrediente){
+					sanguchetto.agregarIngrediente(ingrediente);
+					contador ++;
+				}
 			}
-
-			// Agrego el ingrediente a la lista de ingredientes del Sanguchetto
-			sanguchetto.agregarIngrediente(ingrediente);
 
 			// Descuenta el stock de ingrediente
 			stock.comprarIngrediente(ingrediente, cantidadIngrediente);
-
-			mensaje = "El " + ingrediente.getTipo().name().toLowerCase()
-					+ " ingrediente se agregó correctamente a su Sanguchetto.";
-			modelMap.put("mensaje", mensaje);
-			modelMap.put("mostrarVolver", false);
+			
+			return new ModelAndView("redirect:/sanguchetto/armarSanguchetto");
 		}
-
-		return new ModelAndView("mensaje", modelMap);
 	}
 
 	@RequestMapping(value = "/cancelarSanguchetto", method = RequestMethod.GET)
@@ -155,5 +145,38 @@ public class SanguchettoController {
 			stock.agregarStock(entry.getKey(), entry.getValue());
 		}
 	}
-
+	
+	@RequestMapping(value = "/comprarSanguchetto", method = RequestMethod.GET)
+	public ModelAndView comprarSanguchetto() throws Exception {
+		
+		if(ingredientesAgregados.isEmpty() && condimentosAgregados.isEmpty()){
+			String mensaje = "Debe agregar al menos un ingrediente o condimento a su Sanguchetto.";
+			ModelMap modelMap = new ModelMap();
+			modelMap.put("mensaje", mensaje);
+			modelMap.put("mostrarVolver", false);
+			return new ModelAndView("mensaje", modelMap);
+		}else{
+			return new ModelAndView("redirect:/sanguchetto/resumenSanguchetto");
+		}		
+	}
+	
+	@RequestMapping(value = "/resumenSanguchetto", method = RequestMethod.GET)
+	public ModelAndView resumenSanguchetto() throws Exception {
+		ModelMap modelMap = new ModelMap();
+		
+		if(ingredientesAgregados.isEmpty() && condimentosAgregados.isEmpty()){
+			String mensaje = "Gracias por comprar en Sanguchetto. Para comprar otro sanguche, elija la opción 'Armar sanguche en el menú superior.'";
+			modelMap.put("mensaje", mensaje);
+			modelMap.put("mostrarVolver", false);
+			return new ModelAndView("mensaje", modelMap);
+		}else{
+			modelMap.put("listaIngredientes", sanguchetto.verIngredientes());
+			modelMap.put("listaCondimentos", sanguchetto.verCondimentos());
+			modelMap.put("total", String.format("%.2f", sanguchetto.obtenerPrecio()));
+			sanguchetto.vaciar();
+			ingredientesAgregados.clear();
+			condimentosAgregados.clear();
+			return new ModelAndView("resumenSanguchetto", modelMap);
+		}
+	}
 }

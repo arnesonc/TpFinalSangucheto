@@ -47,7 +47,7 @@
 						<label class="col-md-3 control-label">Precio</label>
 						<div class="col-md-3">
 							<input type="text" placeholder="Precio"
-								class="form-control input-md" value="AR$ ${ ingrediente.precio }" disabled="true" />
+								class="form-control input-md mascara-decimal" value="AR$ ${ ingrediente.precio }" disabled="true" />
 						</div>
 						<div class="col-md-3"></div>
 					</div>
@@ -68,7 +68,7 @@
 						<label class="col-md-3 control-label" >Cantidad</label>
 						<div class="col-md-3">
 							<input type="number" name="cantidad" placeholder="Cantidad"
-								class="form-control input-md" />
+								class="form-control input-md" min="0" step="1" required="required"/>
 						</div>
 						<div class="col-md-3"></div>
 					</div>
@@ -78,7 +78,7 @@
 						<label class="col-md-3 control-label" for="btnGuardarStockIngrediente"></label>
 						<div class="col-md-3">
 							<input type="submit" name="btnGuardarStockIngrediente" class="btn btn-primary"
-								value="Guardar" />
+								value="Aceptar" />
 						</div>
 						<div class="col-md-3"></div>
 					</div>
@@ -87,5 +87,8 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.maskMoney.js"></script>
+	<script type="text/javascript" src="../js/sanguchetto.js"></script>
 </body>
 </html>

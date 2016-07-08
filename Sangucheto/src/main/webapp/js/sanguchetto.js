@@ -3,4 +3,8 @@ $(document).ready(function(){
 		event.preventDefault();
 		window.history.back();
 	});
+	
+	//$(".mascara-decimal").maskMoney();
+	
+	$(".mascara-decimal").maskMoney({prefix:'AR$ ', allowNegative: true, thousands:',', decimal:'.', affixesStay: false});
 });
