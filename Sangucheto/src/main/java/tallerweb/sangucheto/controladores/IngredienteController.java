@@ -43,8 +43,6 @@ public class IngredienteController {
 		boolean existe = stock.existeIngrediente(ingrediente); 
 		
 		if(!existe){
-			//boolean agregado = stock.agregarIngrediente(ingrediente);
-			//mensaje = agregado ? "El ingrediente se agregó correctamente." : "No se pudo agregar el ingrediente";
 			stock.agregarIngrediente(ingrediente);
 			return new ModelAndView("redirect:/stock/verStockIngredientes");
 		}else{

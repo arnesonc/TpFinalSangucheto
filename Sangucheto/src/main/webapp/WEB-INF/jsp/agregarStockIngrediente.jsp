@@ -66,7 +66,7 @@
 					<div class="form-group">
 						<label class="col-md-3 control-label" >Cantidad</label>
 						<div class="col-md-3">
-							<input type="number" name="cantidad" placeholder="Cantidad"
+							<input id="txtPecioAgregarStock" type="number" name="cantidad" placeholder="Cantidad"
 								class="form-control input-md" min="0" step="1" required="required" />
 						</div>
 						<div class="col-md-3"></div>

@@ -23,7 +23,7 @@
 					Sanguchetto</a></li>
 			<li><a href="/sangucheto/stock/verStockIngredientes">Ver
 					stock</a></li>
-			<li class="active"><a
+			<li><a
 				href="/sangucheto/ingredientes/nuevoIngrediente">Agregar
 					ingrediente</a></li>
 		</ul>

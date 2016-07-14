@@ -30,7 +30,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<legend>Nuevo ingrediente</legend>
-				<form:form class="form-horizontal" method="POST"
+				<form:form id="frmNuevoIngrediente" class="form-horizontal" method="POST"
 					action="/ingredientes/guardarIngrediente" commandName="ingrediente">
 
 					<div class="form-group">
@@ -45,7 +45,7 @@
 					<div class="form-group">
 						<form:label class="col-md-4 control-label" path="precio">Precio</form:label>
 						<div class="col-md-4">
-							<form:input path="precio" placeholder="Precio"
+							<form:input id="txtnuevoIngrediente" path="precio" placeholder="Precio"
 								class="form-control input-md mascara-decimal" required="required"  />
 						</div>
 						<div class="col-md-4"></div>
@@ -65,7 +65,7 @@
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="btnGuardar"></label>
 						<div class="col-md-4">
-							<input type="submit" name="btnGuardar" class="btn btn-primary"
+							<input type="submit" name="btnNuevoIngrediente" class="btn btn-primary"
 								value="Guardar" />
 						</div>
 						<div class="col-md-4"></div>
